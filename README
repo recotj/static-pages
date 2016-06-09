@@ -1,0 +1,40 @@
+This is a ui project for building static pages.
+
+1. The overview of the site project.
+ -- (root)
+    |-- lib
+        |-- js (javascript libraries in CommonJS style)
+        |-- scss (scss libraries)
+    |-- shared-assets
+        |-- fonts (fonts assets shared among page projects)
+        |-- icons (faicon shared among page projects)
+    |-- pages (collection of page sub-projects)
+    |-- scripts (some extra scripts for building project)
+    |-- gulp-configs (files to configure gulp tasks)
+    |-- gulp-tasks (common-used gulp tasks)
+    |-- gulpfile.js
+    |-- gulpWorkFlowDevelop.js (gulp workflow for development)
+    |-- gulpWorkFlowProduct.js (gulp workflow for production)
+    |-- package.json
+
+
+2. Preparation for the site project.
+Install node.js(v5.6.0 preferred) and then run `npm install` command to install all dependencies of the site project.
+
+
+3. How to build a new page ?
+Here each page is a single sub-project placed under './pages' directory. The structure of these sub-projects MUST be in accordance with the one showed below.
+
+-- (page sub-project)
+   |-- assets (The directory where all assets needed for the project locate, including images and more .)
+   |-- src (The directory where your SCSS-typed files locate, the preprocessed files used to compile to CSS-typed ones, which highly improves developing efficiency. And an entry file named 'main.scss' must be placed at the root of this directory.)
+   |-- main.js (You can import and manage modules in it in CommonJS style.)
+   |-- index.html (The entry file of the whole project, where you MUST add links to main.js and main.css.)
+
+After completing the page project, you can use gulp task named 'develop' to test the output page with environment variables NODE_ENV assigned with development and SOURCE assigned with the name of the page project. Moreover, you can change the port to listen to by setting environment variable PORT to a new one while the default one is 8003.
+
+If testing well, you can use gulp task named 'publish' to produce the final product, which locates in the 'dist' directory. The 'publish' task make any optimization for you, such as building javascript, compiling SASS files to CSS file, minifying them, optimizing fonts, attaching version stamps to all needed assets, and more. Definitely you need not know the details and should only run the task. If you want to see the final product, you can run the 'local-server' task with environment variables NODE_ENV, SOURCE and PORT set.
+
+ If you want to optimize PNG-typed images, you can use the ScriptPNG.cmd which locates in 'scripts' directory, which only works on Windows platform.
+
+

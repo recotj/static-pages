@@ -1,0 +1,22 @@
+[
+  {
+    "test": "^assets\\/((KaiGenGothicCN|STHeitiSC).*\\.(ttf|woff|eot|svg))$",
+    "dist": "assets/fonts/$1"
+  },
+  {
+    "test": "^assets\\/(.*\\.(png|svg|gif|jpg|jpeg))$",
+    "dist": "assets/images/$1"
+  },
+  {
+    "test": "^(.*\\.css)$",
+    "dist": "css/$1"
+  },
+  {
+    "test": "^(.*\\.js)$",
+    "dist": "js/$1"
+  },
+  {
+    "test": "^(.*\\.(html|html|tpl))$",
+    "dist": "template/$1"
+  }
+]

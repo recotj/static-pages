@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>previews of pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        ul.previews {
+            text-align: center;
+        }
+        ul.previews>li {
+            display: inline-block;
+            margin: 14px 12px;
+            background: rgb(242,242,242);
+            border: 1px solid rgba(150,150,150,0.3);
+        }
+        ul.previews>li>header {
+            text-align: left;
+            padding: 0 10px;
+            font-size: 16px;
+            line-height: 2em;
+        }
+        ul.previews>li>section {
+            padding: 2px;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<ul class="previews">
+    {{#each pages}}
+        <li>
+            <header>{{name}}</header>
+            <section>
+                <iframe class="preview" src="{{path}}" title="{{name}}" frameborder="0" width="300" height="180"></iframe>
+            </section>
+        </li>
+    {{/each}}
+</ul>
+<script>
+    var win = window;
+
+    Array.prototype.forEach.call(document.querySelectorAll('iframe.preview'), function (iframe) {
+        iframe.addEventListener('load', function () {
+            iframe.contentDocument.addEventListener('click', function () {
+                win.postMessage(iframe.src, '*');
+            }, false);
+        });
+    });
+
+    win.addEventListener('message', function (event) {
+        win.location.href = event.data;
+    }, false);
+</script>
+</body>
+</html>

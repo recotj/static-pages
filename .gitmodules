@@ -1,0 +1,3 @@
+[submodule "lib/scss"]
+	path = lib/scss
+	url = git@github.com:recotj/scss-lib.git
