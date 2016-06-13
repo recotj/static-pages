@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "NODE_ENV=development node_modules/.bin/gulp develop",
+    "build": "NODE_ENV=production node_modules/.bin/gulp build",
+    "publish": "NODE_ENV=production node_modules/.bin/gulp publish",
+    "preview": "NODE_ENV=production node_modules/.bin/gulp local-server",
   },
   "repository": {
     "type": "git",

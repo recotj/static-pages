@@ -64,7 +64,7 @@ module.exports = () => {
 	
 	gulp.task('local-server', require('./gulp-tasks/local-server/deploy')());
 
-	gulp.task('publish', (done) => {
+	gulp.task('build', (done) => {
 		require('run-sequence')(
 			'clean',
 			['prepare:css', 'prepare:html', 'prepare:assets'],
@@ -84,7 +84,6 @@ module.exports = () => {
 	});
 	
 	gulp.task('pack:all', resolveAll((options) => {
-		options = Object.assign({}, global.options, options);
 		return () => {
 			return gulp.src(makePath(options.dist, '**'))
 				.pipe(require('gulp-rename')((path) => {
@@ -95,6 +94,14 @@ module.exports = () => {
 				.pipe(gulp.dest(global.options.dist));
 		}
 	}));
+
+	gulp.task('publish', (done) => {
+		require('run-sequence')(
+			'build',
+			'pack:all',
+			done
+		);
+	});
 };
 
 function resolveAll(task, options) {

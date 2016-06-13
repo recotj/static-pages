@@ -1,29 +1,19 @@
 'use strict';
 
 let env = String(process.env.NODE_ENV);
-if (env !== 'production' && env !== 'testing') {
-	env = 'development';
-}
+if (env !== 'production' && env !== 'testing') env = 'development';
 
-const nodeEnv = module.exports = function () {
-	return env;
-};
+const nodeEnv = module.exports = () => env;
 
-nodeEnv.switch = function (envArg) {
+nodeEnv.switch = (envArg) => {
 	envArg = String(envArg);
 	if (envArg === 'development' || envArg === 'testing' || envArg === 'production') {
 		env = envArg;
 	}
 };
 
-nodeEnv.isDevelop = function () {
-	return env !== 'production' && env !== 'testing';
-};
+nodeEnv.isDevelop = () => env === 'development';
 
-nodeEnv.isProduct = function () {
-	return env === 'production';
-};
+nodeEnv.isProduct = () => env === 'production';
 
-nodeEnv.isTesting = function () {
-	return env === 'testing';
-};
+nodeEnv.isTesting = () => env === 'testing';
