@@ -19,7 +19,7 @@ This is a ui project for building static pages.
 
 
 2. Preparation for the site project.
-Install node.js(v5.6.0 preferred) and then run `npm install` command to install all dependencies of the site project.
+Install node.js and then run `npm install` command to install all dependencies of the site project.
 
 
 3. How to build a new page ?
